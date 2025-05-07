@@ -10,6 +10,9 @@ RUN corepack enable && pnpm install
 # Etapa 2: Build
 FROM node:21-alpine3.19 AS builder
 
+ARG ORDERS_DATABASE_URL
+ENV DATABASE_URL=$ORDERS_DATABASE_URL
+
 WORKDIR /usr/src/app
 
 COPY --from=deps /usr/src/app/node_modules ./node_modules
@@ -18,12 +21,8 @@ COPY . .
 RUN corepack enable
 
 # Generar el cliente Prisma
+RUN npx prisma migrate deploy
 RUN npx prisma generate
-
-# Fix de bcrypt para Node 21
-RUN pnpm uninstall bcrypt \
-    && pnpm add bcrypt@5.1.0 \
-    && npm rebuild bcrypt --update-binary
 
 # Compilar el código
 RUN pnpm run build
