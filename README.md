@@ -6,7 +6,7 @@ docker compose up -d
 
 ## Dev
 
-1. Clonar el repositorio
+1. Clonar el repositorio.
 2. Instalar las dependencias
 3. Crear un archivo `.env` a partir del archivo `.env.example`
 4. Levantar la base de datos con `docker compose up -d`
