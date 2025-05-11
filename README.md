@@ -1,4 +1,12 @@
-# Orders MicroService
+# Order Microservice
+
+Manages order lifecycle and order details.
+
+## Tech Stack
+
+- NestJS
+- Prisma ORM
+- PostgreSQL
 
 ```
 docker compose up -d
